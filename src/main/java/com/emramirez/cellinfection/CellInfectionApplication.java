@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 public class CellInfectionApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CellInfectionApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CellInfectionApplication.class, args);
+    }
 
 }
