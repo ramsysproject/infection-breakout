@@ -1,11 +1,13 @@
 package com.emramirez.cellinfection.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
 import java.util.Objects;
 
 @Data
+@Builder
 public class Cell {
 
     private int rowPosition;

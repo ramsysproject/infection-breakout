@@ -9,9 +9,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * The purpose of this class is to calculate how a infection would spread starting in a given cell.
- */
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -25,21 +22,15 @@ public class RecursiveInfectionProcessor implements InfectionSpreadProcessor {
         gridService.setNeighbors(cellMatrix);
     }
 
-    /**
-     * This recursive method gets an infected cell as input, and applies the recursion to its neighbors in order
-     * identify all infected cells. At the end we will end up with the cells which were infected in the breakdown.
-     *
-     * @param input the infected cell
-     * @return a list of infected cells as a result of the infection propagation
-     */
-    public Set<Cell> getInfection(Cell input) {
-        log.info("Processing cell in row {} and column {}", input.getRowPosition(), input.getColumnPosition());
+    @Override
+    public Set<Cell> getInfection(Cell startingCell) {
+        log.info("Processing cell in row {} and column {}", startingCell.getRowPosition(), startingCell.getColumnPosition());
         if (infectedCells.isEmpty()) {
-            infectedCells.add(input);
+            infectedCells.add(startingCell);
         }
 
-        Set<Cell> infectedNeighbors = input.getNeighbors().stream()
-                .filter(neighbor -> isInfected(input, neighbor))
+        Set<Cell> infectedNeighbors = startingCell.getNeighbors().stream()
+                .filter(neighbor -> isInfected(startingCell, neighbor))
                 .filter(neighbor -> !infectedCells.contains(neighbor))
                 .collect(Collectors.toSet());
 

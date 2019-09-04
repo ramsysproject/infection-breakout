@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * The purpose of this class is to calculate how a infection would spread starting in a given cell.
- */
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -24,6 +21,7 @@ public class IterativeInfectionProcessor implements InfectionSpreadProcessor {
         gridService.setNeighbors(cellMatrix);
     }
 
+    @Override
     public Set<Cell> getInfection(Cell startingCell) {
         Stack<Cell> cellStack = new Stack();
         cellStack.add(startingCell);
