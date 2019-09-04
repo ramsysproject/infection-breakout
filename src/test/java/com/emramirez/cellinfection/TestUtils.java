@@ -28,8 +28,8 @@ public class TestUtils {
 
     private static Cell buildCell(int resistance, int row, int column) {
         return Cell.builder()
-                .rowPosition(row)
-                .columnPosition(column)
+                .row(row)
+                .column(column)
                 .resistance(resistance).build();
     }
 }

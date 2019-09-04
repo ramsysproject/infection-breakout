@@ -10,8 +10,8 @@ import java.util.Objects;
 @Builder
 public class Cell {
 
-    private int rowPosition;
-    private int columnPosition;
+    private int row;
+    private int column;
     private int resistance;
     private List<Cell> neighbors;
 
@@ -20,11 +20,11 @@ public class Cell {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cell cell = (Cell) o;
-        return rowPosition == cell.rowPosition && columnPosition == cell.columnPosition;
+        return row == cell.row && column == cell.column;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rowPosition, columnPosition);
+        return Objects.hash(row, column);
     }
 }

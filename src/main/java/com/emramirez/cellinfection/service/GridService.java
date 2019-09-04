@@ -29,26 +29,26 @@ public class GridService {
     }
 
     private void findEastNeighbor(Cell cell, Cell[][] cellMatrix, List<Cell> neighbors) {
-        if (cell.getColumnPosition() != (cellMatrix[cell.getRowPosition()].length - 1)) {
-            neighbors.add(cellMatrix[cell.getRowPosition()][cell.getColumnPosition() + 1]);
+        if (cell.getColumn() != (cellMatrix[cell.getRow()].length - 1)) {
+            neighbors.add(cellMatrix[cell.getRow()][cell.getColumn() + 1]);
         }
     }
 
     private void findWestNeighbor(Cell cell, Cell[][] cellMatrix, List<Cell> neighbors) {
-        if (cell.getColumnPosition() != 0) {
-            neighbors.add(cellMatrix[cell.getRowPosition()][cell.getColumnPosition() - 1]);
+        if (cell.getColumn() != 0) {
+            neighbors.add(cellMatrix[cell.getRow()][cell.getColumn() - 1]);
         }
     }
 
     private void findSouthNeighbor(Cell cell, Cell[][] cellMatrix, List<Cell> neighbors) {
-        if (cell.getRowPosition() != (cellMatrix.length - 1)) {
-            neighbors.add(cellMatrix[cell.getRowPosition() + 1][cell.getColumnPosition()]);
+        if (cell.getRow() != (cellMatrix.length - 1)) {
+            neighbors.add(cellMatrix[cell.getRow() + 1][cell.getColumn()]);
         }
     }
 
     private void findNorthNeighbor(Cell cell, Cell[][] cellMatrix, List<Cell> neighbors) {
-        if (cell.getRowPosition() != 0) {
-            neighbors.add(cellMatrix[cell.getRowPosition() - 1][cell.getColumnPosition()]);
+        if (cell.getRow() != 0) {
+            neighbors.add(cellMatrix[cell.getRow() - 1][cell.getColumn()]);
         }
     }
 }

@@ -6,7 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toSet;
 
 @Service
 @Slf4j
@@ -29,26 +30,20 @@ public class IterativeInfectionProcessor implements InfectionSpreadProcessor {
         List<Cell> visitedCells = new ArrayList<>();
 
         while (!cellStack.isEmpty()) {
-            Cell current = cellStack.pop();
-            if (visitedCells.contains(current)) {
+            Cell currentCell = cellStack.pop();
+            if (visitedCells.contains(currentCell)) {
                 continue;
             }
-            visitedCells.add(current);
+            visitedCells.add(currentCell);
 
-            log.info("Processing cell in row {} and column {}", current.getRowPosition(), current.getColumnPosition());
-            Set<Cell> infectedNeighbors = current.getNeighbors().stream()
-                    .filter(neighbor -> isInfected(current, neighbor))
-                    .filter(neighbor -> !infectedCells.contains(neighbor))
-                    .collect(Collectors.toSet());
-
+            log.info("Processing cell in row {} and column {}", currentCell.getRow(), currentCell.getColumn());
+            Set<Cell> infectedNeighbors = currentCell.getNeighbors().stream()
+                    .filter(neighbor -> isInfected(currentCell, neighbor) && !infectedCells.contains(neighbor))
+                    .collect(toSet());
             infectedCells.addAll(infectedNeighbors);
             cellStack.addAll(infectedNeighbors);
         }
 
         return infectedCells;
-    }
-
-    private boolean isInfected(Cell infectedCell, Cell evaluatedCell) {
-        return evaluatedCell.getResistance() <= infectedCell.getResistance();
     }
 }
