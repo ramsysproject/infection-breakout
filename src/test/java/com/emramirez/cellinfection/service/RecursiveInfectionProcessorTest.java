@@ -15,14 +15,14 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
-public class InfectionServiceTest {
+public class RecursiveInfectionProcessorTest {
 
 	public static final int ROWS = 6;
 	public static final int COLUMNS = 10;
     public static final int EXAMPLE_INFECTED_CELLS_QUANTITY = 12;
 
     @Autowired
-    InfectionService service;
+    RecursiveInfectionProcessor service;
 
 	@Test
 	public void getInfection_exampleMatrixGiven_12infectedCellsExpected() {
@@ -35,7 +35,7 @@ public class InfectionServiceTest {
         Set<Cell> result = service.getInfection(cellMatrix[2][3]);
 
 		// assert
-        result.stream().forEach(cell -> log.info("Infected cell in row {} and column {} with resistance {}",
+        result.stream().forEach(cell -> log.info("Infected cell found in row {} and column {} with resistance {}",
                 cell.getRowPosition() + 1, cell.getColumnPosition() + 1, cell.getResistance()));
         assertEquals("Wrong infected cells number!", EXAMPLE_INFECTED_CELLS_QUANTITY, result.size());
 	}

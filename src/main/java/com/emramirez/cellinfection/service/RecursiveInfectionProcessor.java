@@ -15,10 +15,9 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class InfectionService {
+public class RecursiveInfectionProcessor implements InfectionSpreadProcessor {
 
     private Set<Cell> infectedCells;
-
     private final GridService gridService;
 
     public void initialize(Cell[][] cellMatrix) {
@@ -34,7 +33,7 @@ public class InfectionService {
      * @return a list of infected cells as a result of the infection propagation
      */
     public Set<Cell> getInfection(Cell input) {
-        log.debug("Processing cell in row {} and column {}", input.getRowPosition(), input.getColumnPosition());
+        log.info("Processing cell in row {} and column {}", input.getRowPosition(), input.getColumnPosition());
         if (infectedCells.isEmpty()) {
             infectedCells.add(input);
         }
